@@ -1,0 +1,21 @@
+<mvc:View
+	xmlns="sap.m"
+	xmlns:f="sap.f"
+	xmlns:mvc="sap.ui.core.mvc"
+	controllerName="kate.vaitsiulevich.controller.StoreDetails"
+	>
+	<App>
+		<pages>
+			<Page id="storeDetails" title="{Title}" navButtonPress="onNavBack" showNavButton="{device>/system/phone}">
+				<content>
+					<List id="products" items="{/Products}" headerText="{i18n>HeaderTextListProducts}">
+						<items>
+							<StandardListItem title="{ProductName}" type="Active" press="onSelectionChange"/>
+						</items>
+					</List>
+				</content>
+			</Page>
+		</pages>
+	</App>
+</mvc:View>
+

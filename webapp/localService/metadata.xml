@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<edmx:Edmx Version="1.0"
+    xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:DataServices
+        xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0">
+        <Schema Namespace="NerdStores.Models"
+            xmlns:d="http://schemas.microsoft.com/ado/2007/08/dataservices"
+            xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata"
+            xmlns="http://schemas.microsoft.com/ado/2006/04/edm">
+            <EntityType Name="Stores">
+                <Key>
+                    <PropertyRef Name="StoreID" />
+                </Key>
+                <Property Name="StoreID" Type="Edm.Int32" Nullable="false" />
+                <Property Name="Title" Type="Edm.String" Nullable="true" />
+                <Property Name="Description" Type="Edm.String" Nullable="true" />
+
+                <Property Name="Products" Type="Edm.Object" Nullable="true" />
+                
+                <!-- <Property Name="EventDate" Type="Edm.DateTime" Nullable="false" />
+                <Property Name="Location" Type="NerdStores.Models.LocationDetail" Nullable="false" /> -->
+            </EntityType>
+            <ComplexType Name="LocationDetail" />
+            <EntityContainer Name="NerdStores" m:IsDefaultEntityContainer="true">
+                <EntitySet Name="Stores" EntityType="NerdStores.Models.Stores" />
+                <FunctionImport Name="GetStoresList" EntitySet="Stores" ReturnType="Collection(NerdStores.Models.Stores)" m:HttpMethod="GET" />
+            </EntityContainer>
+        </Schema>
+    </edmx:DataServices>
+</edmx:Edmx>
