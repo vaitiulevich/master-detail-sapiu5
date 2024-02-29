@@ -6,7 +6,8 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "doc": "jsdoc -c jsdoc.json",
-    "start": "ui5 serve --open index.html"
+    "start": "ui5 serve --open index.html",
+		"start-mock": "ui5 serve --open test/mockServer.html"
   },
   "author": "",
   "license": "ISC",

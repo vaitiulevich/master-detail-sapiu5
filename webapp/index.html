@@ -6,17 +6,15 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>UI5</title>
 
-    <!-- Bootstrap the UI5 core library -->
     <script
       id="sap-ui-bootstrap"
-      src=" https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
+      src="https://sapui5.hana.ondemand.com/resources/sap-ui-core.js"
       data-sap-ui-libs="sap.m"
       data-sap-ui-theme="sap_belize"
       data-sap-ui-compatVersion="edge"
       data-sap-ui-language="en"
-      data-sap-ui-resourceroots='{"kate.vaitsiulevich": "./","sap.ui.demo.MockServer": "./"
-		}'
-      data-sap-ui-oninit="module:sap/ui/demo/MockServer/test/initMockServer"
+      data-sap-ui-resourceroots='{"kate.vaitsiulevich": "./"}'
+      data-sap-ui-oninit="module:sap/ui/core/ComponentSupport"
     ></script>
 
     <script>
@@ -27,12 +25,5 @@
       });
     </script>
   </head>
-  <body class="sapUiBody sapUiSizeCompact" id="content">
-    <div
-      data-sap-ui-component
-      data-name="sap.ui.demo.MockServer"
-      data-id="container"
-      data-settings='{"id" : "MockServer"}'
-    ></div>
-  </body>
+  <body class="sapUiBody sapUiSizeCompact" id="content"></body>
 </html>
