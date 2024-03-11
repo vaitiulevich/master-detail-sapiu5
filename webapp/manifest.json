@@ -63,7 +63,9 @@
 				{
 					"pattern": "store/{StoreID}/product/{ProductID}",
 					"name": "ProductDetails",
-					"target": "productDetails"
+					"target":  [
+						"storesOverview",
+						"productDetails"]
 				}
 			],
 
@@ -80,13 +82,16 @@
 				"storeDetails": {
 					"viewName": "StoreDetails",
 					"viewId": "storeDetails",
+					"transition": "slide",
 					"controlAggregation": "detailPages",
 					"viewLevel": 1
 				},
 				"productDetails": {
 					"viewName": "ProductDetails",
 					"viewId": "productDetails",
-					"viewLevel": 3
+					"transition": "slide",
+					"controlAggregation": "detailPages",
+					"viewLevel": 2
 				},
 				"notFound": {
 					"viewName": "NotFound",
@@ -95,7 +100,7 @@
 			}
 		},
 		"dependencies": {
-			"minUI5Version": "1.54.0",
+			"minUI5Version": "1.120.0",
 			"libs": {
 				"sap.m": {}
 			}

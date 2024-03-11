@@ -2,5 +2,5 @@
 	xmlns="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
 	displayBlock="true">
-	<SplitApp id="RootApp"/>
+	<SplitApp initialMaster="storesOverview" id="RootApp"/>
 </mvc:View>

@@ -4,12 +4,14 @@
 	xmlns:mvc="sap.ui.core.mvc"
 	controllerName="kate.vaitsiulevich.controller.StoresOverview"
 	>
-	<App>
-		<pages>
 			<Page id="storesOverview" title="{i18n>HeaderTextListStores}">
 				<VBox >
-					<Button text="{i18n>BtnTextFilterListStores}" press="onPressFilterStoreBtn"/>
-					<List id="list" items="{/Stores}"  mode="SingleSelectMaster" selectionChange="onSelectionChange" noDataText="{i18n>noDataText}">
+					<SearchField width="90%" class="sapUiSmallMargin" search="onSearchStore" />
+					<List id="listStores" 
+					items="{/Stores}" 
+					mode="SingleSelectMaster" 
+					selectionChange="onSelectionChange" 
+					noDataText="{i18n>noDataText}">
 						<ObjectListItem
 						title="{Title}"
 						type="Active"
@@ -27,7 +29,5 @@
 					</List>
 				</VBox>
 			</Page>
-		</pages>
-	</App>
 </mvc:View>
 
