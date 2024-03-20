@@ -10,6 +10,9 @@ sap.ui.define(
     "use strict";
 
     return Controller.extend("kate.vaitsiulevich.controller.StoresOverview", {
+      onInit() {
+        console.log("jj");
+      },
       /**
        * Searching store.
        *

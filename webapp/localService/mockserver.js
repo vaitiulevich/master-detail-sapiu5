@@ -20,6 +20,35 @@ sap.ui.define(
           bGenerateMissingMockData: true,
         });
 
+        var aRequests = oMockServer.getRequests();
+        aRequests.push({
+          method: "DELETE",
+          path: new RegExp("FindUpcomingMeetups(.*)"),
+          response: function (oXhr) {
+            Log.debug("Incoming request for FindUpcomingMeetups");
+            jQuery.ajax({
+              url: "/Products",
+              dataType: "json",
+              async: false,
+              success: function (oData) {
+                oXhr.respondJSON(200, {}, JSON.stringify(oData));
+              },
+            });
+            return true;
+          },
+        });
+        oMockServer.setRequests(aRequests);
+
+        var fnCustom = function (oEvent) {
+          var oXhr = oEvent.getParameter("oXhr");
+          console.log(oXhr);
+          // if (oXhr && oXhr.url.indexOf("first") > -1) {
+          //   oEvent.getParameter("oFilteredData").results.splice(3, 100);
+          // }
+        };
+
+        oMockServer.attachAfter("DELETE", fnCustom, "Products");
+
         oMockServer.start();
 
         Log.info("Running the app with mock data");

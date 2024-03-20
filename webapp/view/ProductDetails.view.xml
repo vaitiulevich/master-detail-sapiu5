@@ -30,7 +30,7 @@
 						</snappedHeading>
 
 						<navigationActions>
-							<m:OverflowToolbarButton type="Transparent" icon="sap-icon://decline" press="onPressCloseProductDetailBtn" />
+							<m:Button type="Back" press="onPressCloseProductDetailBtn" />
 						</navigationActions>
 
 						<actions>
@@ -40,7 +40,8 @@
 									press="toggleAreaPriority"/>
 							<m:Button
 									text="{i18n>TitleDeleteBtn}"
-									type="Transparent"/>
+									type="Reject"
+									press="onPressDeleteProductBtn"/>
 						</actions>
 
 					</ObjectPageDynamicHeaderTitle>

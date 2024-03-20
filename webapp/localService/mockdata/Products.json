@@ -9,7 +9,7 @@
 		  "productImg":"https://img.freepik.com/free-photo/computer-screen-on-a-white-background_1232-543.jpg?w=360"
 		},
 		{
-			"StoreID": 0,
+		  "StoreID": 0,
 		  "ProductId": 1,
 		  "Price":123,
 		  "CurrencyCode":"EUR",
@@ -18,7 +18,7 @@
 		  "productImg":"https://img.freepik.com/free-photo/computer-screen-on-a-white-background_1232-543.jpg?w=360"
 		},
 		{
-			"StoreID": 0,
+		  "StoreID": 0,
 		  "ProductId": 2,
 		  "Price":12.3,
 		  "CurrencyCode":"EUR",
