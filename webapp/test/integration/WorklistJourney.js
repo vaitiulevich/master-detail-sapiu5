@@ -1,5 +1,9 @@
 sap.ui.define(
-  ["sap/ui/test/opaQunit", "./pages/StoresOverview", "./pages/StoreDetails"],
+  [
+    "sap/ui/test/opaQunit",
+    "kate/vaitsiulevich/test/integration/pages/StoresOverview",
+    "kate/vaitsiulevich/test/integration/pages/StoreDetails",
+  ],
   function (opaTest) {
     "use strict";
 
@@ -17,9 +21,28 @@ sap.ui.define(
       When.onTheStoresOverviewPage.iSelectStore();
 
       // Assertions
-      Then.onTheStoreDetailsPage.iShouldSeeTheStoreDetailsPage();
+      Then.onTheStoreDetailsPage
+        .iShouldSeeTheStoreDetailsPage()
+        .and.iShouldSeeProductTable();
     });
 
+    opaTest("Should enter store title", function (Given, When, Then) {
+      // Actions
+      When.onTheStoresOverviewPage.iEnterStoreTitle("store");
+
+      // Assertions
+      Then.onTheStoresOverviewPage.iShouldSeeStoresList("store");
+    });
+
+    QUnit.module("Products");
+
+    opaTest("Should enter product title", function (Given, When, Then) {
+      // Actions
+      When.onTheStoreDetailsPage.iEnterProductTitle("product");
+
+      // Assertions
+      Then.onTheStoreDetailsPage.iShouldSeeProductsList();
+    });
     // opaTest(
     //   "Should see the table with all posts",
     //   function (Given, When, Then) {

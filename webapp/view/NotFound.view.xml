@@ -1,10 +1,8 @@
 <mvc:View
 	xmlns:mvc="sap.ui.core.mvc"
 	xmlns="sap.m">
-
 	<Page
 		title="{i18n>BindNotFoundTitleText}"
-		id="page">
+		id="notFound">
 	</Page>
-
 </mvc:View>

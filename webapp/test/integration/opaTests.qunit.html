@@ -20,17 +20,7 @@
     <script src="https://openui5.hana.ondemand.com/resources/sap/ui/thirdparty/qunit-2.js"></script>
     <script src="https://openui5.hana.ondemand.com/resources/sap/ui/qunit/qunit-2-css.js"></script>
 
-    <script>
-      QUnit.config.autostart = false;
-      sap.ui.getCore().attachInit(function () {
-        sap.ui.require(
-          ["kate/vaitsiulevich/test/integration/AllJourneys"],
-          function () {
-            QUnit.start();
-          }
-        );
-      });
-    </script>
+    <script src="opaTests.qunit.js"></script>
   </head>
   <body>
     <div id="qunit"></div>

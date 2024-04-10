@@ -1,6 +1,15 @@
 <mvc:View
-	xmlns="sap.m"
+	xmlns="sap.f"
+	xmlns:m="sap.m"
 	xmlns:mvc="sap.ui.core.mvc"
-	displayBlock="true">
-	<SplitApp initialMaster="storesOverview" id="RootApp"/>
+	displayBlock="true"
+	controllerName="kate.vaitsiulevich.controller.App"
+	>
+	<m:App>
+		<FlexibleColumnLayout id="RootApp"
+                stateChange="onChangeAppState"
+                layout="{AppLayout>/layout}"
+                backgroundDesign="Translucent">
+            </FlexibleColumnLayout>
+	</m:App>
 </mvc:View>

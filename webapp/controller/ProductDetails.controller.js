@@ -1,11 +1,18 @@
 sap.ui.define(
-  ["sap/ui/core/mvc/Controller", "sap/m/MessageToast", "sap/m/MessageBox"],
-  (Controller, MessageToast, MessageBox) => {
+  [
+    "sap/ui/core/mvc/Controller",
+    "sap/m/MessageToast",
+    "sap/m/MessageBox",
+    "sap/ui/core/util/MockServer",
+    "sap/ui/model/json/JSONModel",
+    "sap/ui/model/odata/v2/ODataModel",
+  ],
+  (Controller, MessageToast, MessageBox, MockServer, JSONModel, ODataModel) => {
     "use strict";
 
     return Controller.extend("kate.vaitsiulevich.controller.ProductDetails", {
       /**
-       * Controller's "init" lifecycle method.
+       * Controller's "onInit" lifecycle method.
        *
        * @public
        */
@@ -16,11 +23,68 @@ sap.ui.define(
         const oComponent = this.getOwnerComponent();
         const oRouter = oComponent.getRouter();
         oRouter
+          .getRoute("StoreDetails")
+          .attachPatternMatched(this.onPatternMatched, this);
+        oRouter
           .getRoute("ProductDetails")
           .attachPatternMatched(this.onPatternMatched, this);
+
+        // this._onConnectEditSmartForm()
       },
       /**
-       * "StoreDetails" route pattern matched event handler.
+       * Set Full Screen Mode.
+       *
+       * @param {sap.ui.base.Event} oEvent event object.
+       *
+       * @public
+       *
+       */
+      onToggleFullScreenBtn(oEvent) {
+        const oODataModel = this.getView().getModel("AppLayout");
+        const oComponent = this.getOwnerComponent();
+        const oSource = oEvent.getSource();
+        const oCtx = oSource.getBindingContext();
+
+        const sStoreId = oCtx.getObject("StoreID");
+        const sProductID = oCtx.getObject("ProductID");
+        const sNextLayout = oODataModel.getProperty(
+          "/actionButtonsInfo/endColumn/fullScreen"
+        );
+
+        oComponent.getRouter().navTo("ProductDetails", {
+          layout: sNextLayout,
+          StoreID: sStoreId,
+          ProductID: sProductID,
+        });
+      },
+      /**
+       * Exit Full Screen Mode.
+       *
+       * @param {sap.ui.base.Event} oEvent event object.
+       *
+       * @public
+       *
+       */
+      onToggleExitFullScreenBtn(oEvent) {
+        const oODataModel = this.getView().getModel("AppLayout");
+        const oComponent = this.getOwnerComponent();
+        const oSource = oEvent.getSource();
+        const oCtx = oSource.getBindingContext();
+
+        const sStoreId = oCtx.getObject("StoreID");
+        const sProductID = oCtx.getObject("ProductID");
+        const sNextLayout = oODataModel.getProperty(
+          "/actionButtonsInfo/endColumn/exitFullScreen"
+        );
+
+        oComponent.getRouter().navTo("ProductDetails", {
+          layout: sNextLayout,
+          StoreID: sStoreId,
+          ProductID: sProductID,
+        });
+      },
+      /**
+       * "ProductDetails" route pattern matched event handler.
        *
        * @param {sap.ui.base.Event} oEvent event object.
        *
@@ -49,23 +113,31 @@ sap.ui.define(
       onPressCloseProductDetailBtn(oEvent) {
         const oSource = oEvent.getSource();
         const oCtx = oSource.getBindingContext();
-
         const oComponent = this.getOwnerComponent();
-        oComponent
-          .getRouter()
-          .navTo("StoreDetails", { StoreID: oCtx.getObject("StoreID") });
+        const sStoreID = oCtx.getObject("StoreID");
+
+        oComponent.getRouter().navTo("StoreDetails", {
+          StoreID: sStoreID,
+          layout: "TwoColumnsMidExpanded",
+        });
       },
+      /**
+       * Delete product.
+       *
+       * @param {sap.ui.base.Event} oEvent event object.
+       *
+       * @public
+       *
+       */
       onPressDeleteProductBtn(oEvent) {
         MessageBox.show(
-          this.oResourceBundle.getText("DeleteStoreConfirmContent"),
+          this.oResourceBundle.getText("DeleteProductConfirmContent"),
           {
             icon: MessageBox.Icon.QUESTION,
-            title: this.oResourceBundle.getText("DeleteStoreConfirmTitle"),
+            title: this.oResourceBundle.getText("DeleteProductConfirmTitle"),
             actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
             emphasizedAction: MessageBox.Action.YES,
             onClose: (sAction) => {
-              console.log(sAction);
-              console.log(MessageBox.Action.YES);
               if (sAction !== MessageBox.Action.OK) {
                 return;
               }
@@ -86,21 +158,59 @@ sap.ui.define(
       _onRemoveProduct(oCtx) {
         const oODataModel = oCtx.getModel();
         const sKey = oODataModel.createKey("/Products", oCtx.getObject());
-        console.log(oCtx.getObject());
+        const sStoreID = oCtx.getObject("StoreID");
 
         oODataModel.remove(sKey, {
           success: () => {
             MessageToast.show(
-              this.oResourceBundle.getText("MessageDeleteStoreSuccess")
+              this.oResourceBundle.getText("MessageDeleteProductSuccess")
             );
-            // this.onOpenStoresOverviewPage();
+            const oComponent = this.getOwnerComponent();
+            oComponent.getRouter().navTo("StoreDetails", {
+              StoreID: sStoreID,
+              layout: "TwoColumnsMidExpanded",
+            });
           },
           error: () => {
             MessageToast.error(
-              this.oResourceBundle.getText("MessageDeleteStoreError")
+              this.oResourceBundle.getText("MessageDeleteProductError")
             );
           },
         });
+      },
+      /**
+       * Edit smart form.
+       *
+       * @private
+       *
+       */
+      _onConnectEditSmartForm() {
+        const oMockServer = new MockServer({
+          rootUri: "smartform.SmartForm/",
+        });
+        const sMockdataUrl = sap.ui.require.toUrl("mockserver");
+        const sMetadataUrl = sMockdataUrl + "/metadata.xml";
+        oMockServer.simulate("../localService/metadata.xml", {
+          sMockdataBaseUrl: "../localService/mockdata",
+          aEntitySetsNames: ["Products"],
+        });
+        oMockServer.start();
+        const oModel = new ODataModel("smartform.SmartForm", true);
+        oModel.setDefaultBindingMode("TwoWay");
+
+        this.getView().setModel(oModel);
+
+        const that = this;
+        oModel
+          .getMetaModel()
+          .loaded()
+          .then(() => {
+            // that.getView().byId("smartFormColumn").bindElement("/Products(0)");
+            const sProductID = 0;
+            const sKey = "/Products(" + sProductID + ")";
+
+            that.getView().bindObject({ path: sKey });
+          });
       },
     });
   }

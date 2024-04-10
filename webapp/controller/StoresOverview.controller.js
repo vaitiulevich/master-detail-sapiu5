@@ -5,14 +5,19 @@ sap.ui.define(
     "sap/m/ObjectAttribute",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
+    "sap/f/library",
   ],
-  (Controller, ObjectListItem, ObjectAttribute, Filter, FilterOperator) => {
+  (
+    Controller,
+    ObjectListItem,
+    ObjectAttribute,
+    Filter,
+    FilterOperator,
+    fioriLibrary
+  ) => {
     "use strict";
 
     return Controller.extend("kate.vaitsiulevich.controller.StoresOverview", {
-      onInit() {
-        console.log("jj");
-      },
       /**
        * Searching store.
        *
@@ -46,15 +51,17 @@ sap.ui.define(
        *
        */
       onSelectionChange(oEvent) {
-        const sStoreId = oEvent
-          .getSource()
-          .getSelectedItem()
-          .getBindingContext()
-          .getProperty("StoreID");
-
         const oComponent = this.getOwnerComponent();
+        const oSource = oEvent.getSource();
+        const oCtx = oSource.getBindingContext();
+
+        const sStoreId = oCtx.getObject("StoreID");
+        const oNextUIState = this.getOwnerComponent()
+          .getHelper()
+          .getNextUIState(1);
 
         oComponent.getRouter().navTo("StoreDetails", {
+          layout: oNextUIState.layout,
           StoreID: sStoreId,
         });
       },

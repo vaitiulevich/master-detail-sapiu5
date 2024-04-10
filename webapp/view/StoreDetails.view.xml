@@ -1,91 +1,129 @@
 <mvc:View
-	xmlns="sap.m"
+	xmlns="sap.uxap"
+	xmlns:m="sap.m"
 	xmlns:f="sap.f"
-	xmlns:mvc="sap.ui.core.mvc"
 	xmlns:form="sap.ui.layout.form"
-	controllerName="kate.vaitsiulevich.controller.StoreDetails"
-	>
-	<f:DynamicPage id="storeDetails"
+	xmlns:mvc="sap.ui.core.mvc"
+	controllerName="kate.vaitsiulevich.controller.StoreDetails">
+	<ObjectPageLayout
+		id="storeDetails"
 		showFooter="true"
-		toggleHeaderOnTitleClick="false">
-				   <f:title>
-				<f:DynamicPageTitle>
-					<f:heading>
-						<Title text="{Title}"/>
-					</f:heading>
-					<f:expandedContent>
-						<Label text="{Description}"/>
-					</f:expandedContent>
-					<f:snappedContent>
-						<Label text="{Description}"/>
-					</f:snappedContent>
-					<f:snappedTitleOnMobile>
-						<Title text="{Description}"/>
-					</f:snappedTitleOnMobile>
-					<f:navigationActions>
-						<Button
-								icon="sap-icon://decline"
-								press="onPressClosePageBtn"
-								type="Transparent" />
-					</f:navigationActions>
-				</f:DynamicPageTitle>
-			</f:title>
-		<f:header>
-				<f:DynamicPageHeader pinnable="true">
-					<HBox>
-						<VBox class="sapUiMediumMarginEnd">
-							<ObjectAttribute title="{i18n>TitleStoreID}" text="{StoreID}"/>
-							<ObjectAttribute title="{i18n>TitleAddress}" text="{Address}"/>
-							<ObjectAttribute title="{i18n>TitleEmail}" text="{Email}"/>
-						</VBox>
-					</HBox>
-				</f:DynamicPageHeader>
-			</f:header>
-		<f:content>
-			<Table
+		showTitleInHeaderContent="true"
+		alwaysShowContentHeader="false"
+		preserveHeaderStateOnScroll="false"
+		headerContentPinnable="true"
+		isChildPage="true"
+		upperCaseAnchorBar="false">
+		<headerTitle>
+			<ObjectPageDynamicHeaderTitle>
+				<expandedHeading>
+					<m:Title text="{Title}" wrapping="true"/>
+				</expandedHeading>
+				<snappedHeading>
+					<m:FlexBox fitContainer="true" alignItems="Center">
+						<m:Title text="{Title}" wrapping="true" />
+					</m:FlexBox>
+				</snappedHeading>
+
+				<expandedContent>
+					<m:Text text="{Description}"/>
+				</expandedContent>
+
+				<snappedContent>
+					<m:Text text="{Description}"/>
+				</snappedContent>
+				<navigationAction>
+					<m:OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen" press="onToggleFullScreenBtn" id="enterFullScreenBtn" tooltip="{i18n>TooltipEnterFullScreen}" 
+					visible="{= ${AppLayout>/actionButtonsInfo/midColumn/fullScreen} !== null }"/>
+					<m:OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen" press="onToggleExitFullScreenBtn" id="exitFullScreenBtn" tooltip="{i18n>TooltipExitFullScreen}" 
+					visible="{= ${AppLayout>/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/>
+					<m:OverflowToolbarButton type="Transparent" icon="sap-icon://decline" press="onPressClosePageBtn"  tooltip="{i18n>TooltipCloseMidColumn}" 
+					visible="{= ${AppLayout>/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
+				</navigationAction >
+			</ObjectPageDynamicHeaderTitle>
+		</headerTitle>
+
+		<sections>
+			<ObjectPageSection title="{i18n>HeaderTextInformation}">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<form:SimpleForm maxContainerCols="2"
+							editable="false"
+							layout="ResponsiveGridLayout"
+							labelSpanL="12"
+							labelSpanM="12"
+							emptySpanL="0"
+							emptySpanM="0"
+							columnsL="1"
+							columnsM="1">
+								<form:content>
+									<m:Label text="{i18n>TitleStoreID}" />
+									<m:Text text="{StoreID}"/>
+
+									<m:Label text="{i18n>TitleAddress}"/>
+									<m:Text text="{Address}"/>
+
+									<m:Label text="{i18n>TitleEmail}" />
+									<m:Text text="{Email}"/>
+								</form:content>
+							</form:SimpleForm>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection title="{i18n>HeaderTextListProducts}">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<m:Table
 				id="productsTable"
 				inset="false"
 				items="{Products}"
 				class="sapFDynamicPageAlignContent"
 				sticky="ColumnHeaders"
 				width="auto">
-				<headerToolbar>
-					<OverflowToolbar>
-						<ToolbarSpacer/>
-						<SearchField search="onSearchProduct" width="17.5rem"/>
-						<OverflowToolbarButton icon="sap-icon://sort" type="Transparent" press="onPressSortPriceTableBtn"/>
-					</OverflowToolbar>
-				</headerToolbar>
-				<columns>
-					<Column width="12em">
-						<Text text="{i18n>HeaderTextListProducts}" />
-					</Column>
-					<Column	hAlign="End">
-						<Text text="{i18n>HeaderTextPrice}" />
-					</Column>
-				</columns>
-				<items>
-					<ColumnListItem press="onPressSellectionProductBtn" type="Navigation">
-						<cells>
-							<ObjectIdentifier title="{ProductName}" text="{ProductId}" />
-							<ObjectNumber
+				<m:headerToolbar>
+					<m:OverflowToolbar>
+						<m:ToolbarSpacer/>
+						<m:SearchField search="onSearchProduct" id="productSearchField" width="17.5rem"/>
+						<m:OverflowToolbarButton icon="sap-icon://sort" type="Transparent" press="onPressSortPriceTableBtn"/>
+					</m:OverflowToolbar>
+				</m:headerToolbar>
+				<m:columns>
+					<m:Column width="12em">
+						<m:Text text="{i18n>HeaderTextListProducts}" />
+					</m:Column>
+					<m:Column	hAlign="End">
+						<m:Text text="{i18n>HeaderTextPrice}" />
+					</m:Column>
+				</m:columns>
+				<m:items>
+					<m:ColumnListItem press="onPressSellectionProductBtn" type="Navigation">
+						<m:cells>
+							<m:ObjectIdentifier title="{ProductName}" text="{ProductID}" />
+							<m:ObjectNumber
 									number="{
 										parts:[{path:'Price'},{path:'CurrencyCode'}],
 										type: 'sap.ui.model.type.Currency',
 										formatOptions: {showMeasure: false}
 									}"
 									unit="{CurrencyCode}" />
-						</cells>
-					</ColumnListItem>
-				</items>
-			</Table>
-		</f:content>
-		<f:footer>
-			<OverflowToolbar>
-				<ToolbarSpacer/>
-				<Button type="Reject" text="{i18n>TitleDeleteBtn}"/>
-			</OverflowToolbar>
-		</f:footer>
-	</f:DynamicPage>
+						</m:cells>
+					</m:ColumnListItem>
+				</m:items>
+			</m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+		</sections>
+		<footer>
+			<m:OverflowToolbar>
+				<m:ToolbarSpacer/>
+				<m:Button icon="sap-icon://delete" type="Reject" press="onPressDeleteStoreBtn" text="{i18n>TitleDeleteBtn}"/>
+			</m:OverflowToolbar>
+		</footer>
+	</ObjectPageLayout>
 </mvc:View>
-

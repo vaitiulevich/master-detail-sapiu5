@@ -12,20 +12,7 @@ sap.ui.define(["sap/ui/test/Opa5"], function (Opa5) {
        * @param {boolean} [oOptionsParameter.autoWait=true] Automatically wait for pending requests while the application is starting up
        */
       iStartMyApp: function (oOptionsParameter) {
-        var oOptions = oOptionsParameter || {};
-
-        // start the app with a minimal delay to make tests fast but still async to discover basic timing issues
-        oOptions.delay = oOptions.delay || 1;
-
-        // start the app UI component
-        this.iStartMyUIComponent({
-          componentConfig: {
-            name: "kate.vaitsiulevich",
-            async: true,
-          },
-          hash: oOptions.hash,
-          autoWait: oOptions.autoWait,
-        });
+        return this.iStartMyAppInAFrame("../mockServer.html");
       },
     }
   );

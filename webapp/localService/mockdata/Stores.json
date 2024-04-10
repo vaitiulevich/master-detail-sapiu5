@@ -65,5 +65,12 @@
 	  "StoreID": 12,
 	  "Title": "esse",
 	  "Description": "Aute ad pariatur ex aliqua ex cupidatat minim sit in pariatur quis. Sint quis commodo dolore eu Lorem fugiat anim ut aliquip. Et sunt ad voluptate ipsum fugiat cupidatat pariatur cillum labore non sit quis Lorem. Incididunt consectetur sint laboris tempor excepteur adipisicing dolore. Ea id nisi dolor eu ipsum cillum occaecat Lorem excepteur sunt proident incididunt. Officia pariatur esse deserunt veniam eu veniam exercitation ad occaecat tempor dolor ut reprehenderit. Sunt enim duis aute incididunt cillum ut culpa sunt amet minim elit labore voluptate.\r\n"
-	}
+	},
+	{
+		"StoreID": 13,
+		"Title": "store do",
+		"Address":"Minsk.Lopatina 4/2",
+		"Email":"test@gmail.com",
+		"Description": "Dolore ssttoorr sint culpa fugiat officia laborum. Reprehenderit tempor laboris minim aliquip cupidatat commodo sint nulla. Proident excepteur consectetur exercitation ullamco velit. Qui ut duis irure reprehenderit aliquip mollit fugiat laboris. Aliqua in id excepteur qui cillum sit deserunt ad officia cupidatat enim officia.\r\n"
+	  }
   ]

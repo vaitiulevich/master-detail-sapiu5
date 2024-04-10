@@ -4,8 +4,10 @@ sap.ui.define(
     "sap/ui/model/Sorter",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
+    "sap/m/MessageToast",
+    "sap/m/MessageBox",
   ],
-  (Controller, Sorter, Filter, FilterOperator) => {
+  (Controller, Sorter, Filter, FilterOperator, MessageToast, MessageBox) => {
     "use strict";
 
     return Controller.extend("kate.vaitsiulevich.controller.StoreDetails", {
@@ -15,11 +17,65 @@ sap.ui.define(
        * @public
        */
       onInit() {
+        this.oResourceBundle = this.getOwnerComponent()
+          .getModel("i18n")
+          .getResourceBundle();
         const oComponent = this.getOwnerComponent();
         const oRouter = oComponent.getRouter();
         oRouter
           .getRoute("StoreDetails")
           .attachPatternMatched(this.onPatternMatched, this);
+        oRouter
+          .getRoute("ProductDetails")
+          .attachPatternMatched(this.onPatternMatched, this);
+      },
+      /**
+       * Set Full Screen Mode.
+       *
+       * @param {sap.ui.base.Event} oEvent event object.
+       *
+       * @public
+       *
+       */
+      onToggleFullScreenBtn(oEvent) {
+        const oODataModel = this.getView().getModel("AppLayout");
+        const oComponent = this.getOwnerComponent();
+        const oSource = oEvent.getSource();
+        const oCtx = oSource.getBindingContext();
+
+        const sStoreId = oCtx.getObject("StoreID");
+        const sNextLayout = oODataModel.getProperty(
+          "/actionButtonsInfo/midColumn/fullScreen"
+        );
+
+        oComponent.getRouter().navTo("StoreDetails", {
+          layout: sNextLayout,
+          StoreID: sStoreId,
+        });
+      },
+      /**
+       * Exit Full Screen Mode.
+       *
+       * @param {sap.ui.base.Event} oEvent event object.
+       *
+       * @public
+       *
+       */
+      onToggleExitFullScreenBtn(oEvent) {
+        const oODataModel = this.getView().getModel("AppLayout");
+        const oComponent = this.getOwnerComponent();
+        const oSource = oEvent.getSource();
+        const oCtx = oSource.getBindingContext();
+
+        const sStoreId = oCtx.getObject("StoreID");
+        const sNextLayout = oODataModel.getProperty(
+          "/actionButtonsInfo/midColumn/exitFullScreen"
+        );
+
+        oComponent.getRouter().navTo("StoreDetails", {
+          layout: sNextLayout,
+          StoreID: sStoreId,
+        });
       },
       /**
        * "StoreDetails" route pattern matched event handler.
@@ -53,16 +109,17 @@ sap.ui.define(
           .getSource()
           .getBindingContext()
           .getProperty("StoreID");
-        const sProductId = oEvent
+        const sProductID = oEvent
           .getSource()
           .getBindingContext()
-          .getProperty("ProductId");
+          .getProperty("ProductID");
 
         const oComponent = this.getOwnerComponent();
 
         oComponent.getRouter().navTo("ProductDetails", {
           StoreID: sStoreId,
-          ProductID: sProductId,
+          ProductID: sProductID,
+          layout: "ThreeColumnsMidExpanded",
         });
       },
       /**
@@ -73,7 +130,7 @@ sap.ui.define(
        */
       onPressClosePageBtn() {
         const oComponent = this.getOwnerComponent();
-        oComponent.getRouter().navTo("StoresOverview");
+        oComponent.getRouter().navTo("StoresOverview", { layout: "OneColumn" });
       },
       /**
        * Sort product table by price.
@@ -87,8 +144,23 @@ sap.ui.define(
           oTable = oView.byId("productsTable"),
           oBinding = oTable.getBinding("items"),
           oSorter = new Sorter("Price", this._bDescendingSort);
-
         oBinding.sort(oSorter);
+      },
+      onPressOpenFullScreen(oEvent) {
+        const oODataModel = this.getView().getModel("AppLayout");
+        const oComponent = this.getOwnerComponent();
+        const oSource = oEvent.getSource();
+        const oCtx = oSource.getBindingContext();
+
+        const sStoreId = oCtx.getObject("StoreID");
+        const sNextLayout = oODataModel.getProperty(
+          "/actionButtonsInfo/midColumn/fullScreen"
+        );
+
+        oComponent.getRouter().navTo("StoreDetails", {
+          layout: sNextLayout,
+          StoreID: sStoreId,
+        });
       },
       /**
        * Searching product.
@@ -112,6 +184,58 @@ sap.ui.define(
           .byId("productsTable")
           .getBinding("items")
           .filter(oTableSearchState, "Application");
+      },
+      /**
+       * Delete store.
+       *
+       * @param {sap.ui.base.Event} oEvent event object.
+       *
+       * @public
+       *
+       */
+      onPressDeleteStoreBtn(oEvent) {
+        MessageBox.show(
+          this.oResourceBundle.getText("DeleteStoreConfirmContent"),
+          {
+            icon: MessageBox.Icon.QUESTION,
+            title: this.oResourceBundle.getText("DeleteStoreConfirmTitle"),
+            actions: [MessageBox.Action.OK, MessageBox.Action.CANCEL],
+            emphasizedAction: MessageBox.Action.YES,
+            onClose: (sAction) => {
+              if (sAction !== MessageBox.Action.OK) {
+                return;
+              }
+              const oCtx = oEvent.getSource().getBindingContext();
+              this._onRemoveStore(oCtx);
+            },
+          }
+        );
+      },
+      /**
+       * Remove Store event.
+       *
+       * @private
+       *
+       * @param {object} oCtx context of store.
+       *
+       */
+      _onRemoveStore(oCtx) {
+        const oODataModel = oCtx.getModel();
+        const sKey = oODataModel.createKey("/Stores", oCtx.getObject());
+
+        oODataModel.remove(sKey, {
+          success: () => {
+            MessageToast.show(
+              this.oResourceBundle.getText("MessageDeleteStoreSuccess")
+            );
+            this.onPressClosePageBtn();
+          },
+          error: () => {
+            MessageToast.error(
+              this.oResourceBundle.getText("MessageDeleteStoreError")
+            );
+          },
+        });
       },
     });
   }

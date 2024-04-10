@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8" standalone="yes"?>
 <edmx:Edmx Version="1.0"
+    xmlns:sap="http://www.sap.com/Protocols/SAPData"
     xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
     <edmx:DataServices
         xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0">
@@ -18,10 +19,15 @@
             </EntityType>
             <EntityType Name="Product">
                 <Key>
-                    <PropertyRef Name="ProductId" />
+                    <PropertyRef Name="ProductID" />
                 </Key>
-                <Property Name="ProductId" Type="Edm.Int32" Nullable="false" />
-                <Property Name="ProductName" Type="Edm.String" Nullable="true" />
+                <Property Name="ProductID" sap:updatable="false" MaxLength="20" sap:label="Product ID" Type="Edm.Int32" Nullable="false" />
+                <Property Name="ProductName" sap:updatable="true" sap:label="Product Name" Type="Edm.String" Nullable="false" />
+                <!-- <Property Name="Description" Type="Edm.String" Nullable="false"
+					MaxLength="256" sap:label="Description" sap:creatable="false"
+					sap:updatable="true" sap:sortable="false" /> -->
+                <Property Name="Description" sap:updatable="true" sap:label="Description" Type="Edm.String" Nullable="true" />
+                <Property Name="Price" sap:updatable="true" sap:label="Price" Type="Edm.String" Nullable="false" />
                 <NavigationProperty Name="Stores" Relationship="NerdStores.Models.Product_Store_Store_Products" FromRole="Product_Store" ToRole="Store_Product"/>
             </EntityType>
 

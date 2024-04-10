@@ -37,7 +37,7 @@
 				"viewType": "XML",
 				"viewPath": "kate.vaitsiulevich.view",
 				"controlId": "RootApp",
-				"controlAggregation": "pages",
+				"transition": "slide",
 				"clearControlAggregation": false,
 				"bypassed": {
 					"target": [
@@ -48,12 +48,12 @@
 			},
 			"routes": [
 				{
-					"pattern": "",
+					"pattern": ":layout:",
 					"name": "StoresOverview",
 					"target": ["storesOverview"]
 				},
 				{
-					"pattern": "store/{StoreID}",
+					"pattern": "store/{StoreID}/{layout}",
 					"name": "StoreDetails",
 					"target":  [
 						"storesOverview",
@@ -61,37 +61,33 @@
 					]
 				},
 				{
-					"pattern": "store/{StoreID}/product/{ProductID}",
+					"pattern": "store/{StoreID}/product/{ProductID}/{layout}",
 					"name": "ProductDetails",
 					"target":  [
 						"storesOverview",
+						"storeDetails",
 						"productDetails"]
 				}
 			],
 
 			"targets": {
 				"storesOverview": {
-					"viewType": "XML",
-					"transition": "slide",
-					"clearControlAggregation": false,
-					"controlAggregation": "masterPages",
 					"viewName": "StoresOverview",
 					"viewId": "storesOverview",
+					"controlAggregation": "beginColumnPages",
 					"viewLevel": 0
 				},
 				"storeDetails": {
 					"viewName": "StoreDetails",
 					"viewId": "storeDetails",
-					"transition": "slide",
-					"controlAggregation": "detailPages",
+					"controlAggregation": "midColumnPages",
 					"viewLevel": 1
 				},
 				"productDetails": {
 					"viewName": "ProductDetails",
 					"viewId": "productDetails",
-					"transition": "slide",
-					"controlAggregation": "detailPages",
-					"viewLevel": 2
+					"controlAggregation": "endColumnPages",
+					"viewLevel": 1
 				},
 				"notFound": {
 					"viewName": "NotFound",
