@@ -95,6 +95,7 @@ sap.ui.define(
         const that = this;
         const mRouteArguments = oEvent.getParameter("arguments");
         const sProductID = mRouteArguments.ProductID;
+        const sStoreID = mRouteArguments.StoreID;
         const oODataModel = this.getView().getModel();
 
         oODataModel.metadataLoaded().then(() => {

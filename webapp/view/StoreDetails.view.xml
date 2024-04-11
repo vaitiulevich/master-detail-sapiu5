@@ -32,14 +32,14 @@
 				<snappedContent>
 					<m:Text text="{Description}"/>
 				</snappedContent>
-				<navigationAction>
+				<navigationActions>
 					<m:OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen" press="onToggleFullScreenBtn" id="enterFullScreenBtn" tooltip="{i18n>TooltipEnterFullScreen}" 
-					visible="{= ${AppLayout>/actionButtonsInfo/midColumn/fullScreen} !== null }"/>
+					visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }"/>
 					<m:OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen" press="onToggleExitFullScreenBtn" id="exitFullScreenBtn" tooltip="{i18n>TooltipExitFullScreen}" 
-					visible="{= ${AppLayout>/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/>
+					visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/>
 					<m:OverflowToolbarButton type="Transparent" icon="sap-icon://decline" press="onPressClosePageBtn"  tooltip="{i18n>TooltipCloseMidColumn}" 
-					visible="{= ${AppLayout>/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
-				</navigationAction >
+					visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
+				</navigationActions >
 			</ObjectPageDynamicHeaderTitle>
 		</headerTitle>
 
