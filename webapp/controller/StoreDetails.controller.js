@@ -48,6 +48,8 @@ sap.ui.define(
           "/actionButtonsInfo/midColumn/fullScreen"
         );
 
+        console.log(sNextLayout);
+
         oComponent.getRouter().navTo("StoreDetails", {
           layout: sNextLayout,
           StoreID: sStoreId,
@@ -71,6 +73,7 @@ sap.ui.define(
         const sNextLayout = oODataModel.getProperty(
           "/actionButtonsInfo/midColumn/exitFullScreen"
         );
+        console.log(sNextLayout);
 
         oComponent.getRouter().navTo("StoreDetails", {
           layout: sNextLayout,

@@ -47,7 +47,7 @@
 								press="onToggleFullScreenBtn" 
 								id="enterFullScreenBtn" 
 								tooltip="{i18n>TooltipEnterFullScreen}" 
-								visible="{= ${/actionButtonsInfo/endColumn/fullScreen} !== null }"
+								visible="{= ${AppLayout>/actionButtonsInfo/endColumn/fullScreen} !== null }"
 							/>
 							<m:OverflowToolbarButton 
 								type="Transparent" 
@@ -55,14 +55,14 @@
 								press="onToggleExitFullScreenBtn" 
 								id="exitFullScreenBtn" 
 								tooltip="{i18n>TooltipExitFullScreen}" 
-								visible="{= ${/actionButtonsInfo/endColumn/exitFullScreen} !== null }"
+								visible="{= ${AppLayout>/actionButtonsInfo/endColumn/exitFullScreen} !== null }"
 							/>
 							<m:OverflowToolbarButton 
 								type="Transparent" 
 								icon="sap-icon://decline" 
 								press="onPressCloseProductDetailBtn"  
 								tooltip="{i18n>TooltipCloseEndColumn}" 
-								visible="{= ${/actionButtonsInfo/endColumn/closeColumn} !== null }"
+								visible="{= ${AppLayout>/actionButtonsInfo/endColumn/closeColumn} !== null }"
 							/>
 						</navigationActions>
 					</ObjectPageDynamicHeaderTitle>

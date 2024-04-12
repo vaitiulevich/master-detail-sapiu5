@@ -4,6 +4,8 @@
 	xmlns:f="sap.f"
 	xmlns:form="sap.ui.layout.form"
 	xmlns:mvc="sap.ui.core.mvc"
+	xmlns:smartTable="sap.ui.comp.smarttable"
+	xmlns:customData="http://schemas.sap.com/sapui5/extension/sap.ui.core.CustomData/1"
 	controllerName="kate.vaitsiulevich.controller.StoreDetails">
 	<ObjectPageLayout
 		id="storeDetails"
@@ -34,11 +36,11 @@
 				</snappedContent>
 				<navigationActions>
 					<m:OverflowToolbarButton type="Transparent" icon="sap-icon://full-screen" press="onToggleFullScreenBtn" id="enterFullScreenBtn" tooltip="{i18n>TooltipEnterFullScreen}" 
-					visible="{= ${/actionButtonsInfo/midColumn/fullScreen} !== null }"/>
+					visible="{= ${AppLayout>/actionButtonsInfo/midColumn/fullScreen} !== null }"/>
 					<m:OverflowToolbarButton type="Transparent" icon="sap-icon://exit-full-screen" press="onToggleExitFullScreenBtn" id="exitFullScreenBtn" tooltip="{i18n>TooltipExitFullScreen}" 
-					visible="{= ${/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/>
+					visible="{= ${AppLayout>/actionButtonsInfo/midColumn/exitFullScreen} !== null }"/>
 					<m:OverflowToolbarButton type="Transparent" icon="sap-icon://decline" press="onPressClosePageBtn"  tooltip="{i18n>TooltipCloseMidColumn}" 
-					visible="{= ${/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
+					visible="{= ${AppLayout>/actionButtonsInfo/midColumn/closeColumn} !== null }"/>
 				</navigationActions >
 			</ObjectPageDynamicHeaderTitle>
 		</headerTitle>
@@ -114,6 +116,23 @@
 					</m:ColumnListItem>
 				</m:items>
 			</m:Table>
+						</blocks>
+					</ObjectPageSubSection>
+				</subSections>
+			</ObjectPageSection>
+
+			<ObjectPageSection title="{i18n>HeaderTextListProducts}">
+				<subSections>
+					<ObjectPageSubSection>
+						<blocks>
+							<smartTable:SmartTable id="LineItemsSmartTable" entitySet="Products"
+                                enableExport="true"
+                                tableBindingPath="Products"
+                                header="Products table" showRowCount="true"
+                                enableAutoBinding="true"
+                                enableAutoColumnWidth="true" editTogglable="true"
+                                customData:useSmartToggle="true">
+                            </smartTable:SmartTable>
 						</blocks>
 					</ObjectPageSubSection>
 				</subSections>

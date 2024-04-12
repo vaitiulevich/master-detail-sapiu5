@@ -2,6 +2,10 @@
 <edmx:Edmx Version="1.0"
     xmlns:sap="http://www.sap.com/Protocols/SAPData"
     xmlns:edmx="http://schemas.microsoft.com/ado/2007/06/edmx">
+    <edmx:Reference xmlns:edmx="http://docs.oasis-open.org/odata/ns/edmx"
+        Uri="https://sap.github.io/odata-vocabularies/vocabularies/UI.xml">
+        <edmx:Include Alias="UI" Namespace="com.sap.vocabularies.UI.v1" />
+    </edmx:Reference>
     <edmx:DataServices
         xmlns:m="http://schemas.microsoft.com/ado/2007/08/dataservices/metadata" m:DataServiceVersion="1.0">
         <Schema Namespace="NerdStores.Models"
@@ -13,7 +17,9 @@
                     <PropertyRef Name="StoreID" />
                 </Key>
                 <Property Name="StoreID" Type="Edm.Int32" Nullable="false" />
-                <Property Name="Title" Type="Edm.String" Nullable="true" />
+                <Property Name="Title" Type="Edm.String" Nullable="false" />
+                <Property Name="Address" Type="Edm.String" Nullable="true" />
+                <Property Name="Email" Type="Edm.String" Nullable="false" />
                 <Property Name="Description" Type="Edm.String" Nullable="true" />
                 <NavigationProperty Name="Products" Relationship="NerdStores.Models.Product_Store_Store_Products" FromRole="Store_Product" ToRole="Product_Store"/>
             </EntityType>
@@ -22,12 +28,12 @@
                     <PropertyRef Name="ProductID" />
                 </Key>
                 <Property Name="ProductID" sap:updatable="false" MaxLength="20" sap:label="Product ID" Type="Edm.Int32" Nullable="false" />
+                <Property Name="StoreID" Type="Edm.Int32" Nullable="false" sap:updatable="false" sap:label="Store ID"/>
                 <Property Name="ProductName" sap:updatable="true" sap:label="Product Name" Type="Edm.String" Nullable="false" />
-                <!-- <Property Name="Description" Type="Edm.String" Nullable="false"
-					MaxLength="256" sap:label="Description" sap:creatable="false"
-					sap:updatable="true" sap:sortable="false" /> -->
+                <Property Name="Price" sap:updatable="true" sap:label="Price" Type="Edm.Number" Nullable="false" />
+                <Property Name="CurrencyCode" sap:updatable="false" sap:label="CurrencyCode" Type="Edm.Currency" Nullable="false" />
                 <Property Name="Description" sap:updatable="true" sap:label="Description" Type="Edm.String" Nullable="true" />
-                <Property Name="Price" sap:updatable="true" sap:label="Price" Type="Edm.String" Nullable="false" />
+                <Property Name="productImg" sap:updatable="true" sap:label="productImg" Type="Edm.String" Nullable="true" />
                 <NavigationProperty Name="Stores" Relationship="NerdStores.Models.Product_Store_Store_Products" FromRole="Product_Store" ToRole="Store_Product"/>
             </EntityType>
 
@@ -38,9 +44,9 @@
                     <Principal Role="Store_Product">
                         <PropertyRef Name="StoreID" />
                     </Principal>
-                    <Principal Role="Product_Store">
+                    <Dependent Role="Product_Store">
                         <PropertyRef Name="StoreID" />
-                    </Principal>
+                    </Dependent>
                 </ReferentialConstraint>
             </Association>
 
@@ -57,6 +63,22 @@
                     <!-- <Parameter Name="rating" Type="Edm.Int32" Mode="In"/> -->
                 </FunctionImport>
             </EntityContainer>
+            <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
+                Target="NerdStores.Models.Product">
+                <Annotation Term="UI.LineItem">
+                    <Collection>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="ProductName" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Description" />
+                        </Record>
+                        <Record Type="UI.DataField">
+                            <PropertyValue Property="Value" Path="Price" />
+                        </Record>
+                    </Collection>
+                </Annotation>
+            </Annotations>
         </Schema>
     </edmx:DataServices>
 </edmx:Edmx>

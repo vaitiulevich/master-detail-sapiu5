@@ -2,7 +2,7 @@
 		{
 		  "StoreID": 13,
 		  "ProductID": 0,
-		  "ProductName": "product magna",
+		  "ProductName": "product 0",
 		  "Price":123,
 		  "CurrencyCode":"EUR",
 		  "Description": "Dolore sint culpa fugiat officia laborum. Reprehenderit tempor laboris minim aliquip cupidatat commodo sint nulla. Proident excepteur consectetur exercitation ullamco velit. Qui ut duis irure reprehenderit aliquip mollit fugiat laboris. Aliqua in id excepteur qui cillum sit deserunt ad officia cupidatat enim officia.\r\n",
@@ -13,7 +13,7 @@
 		  "ProductID": 1,
 		  "Price":123,
 		  "CurrencyCode":"EUR",
-		  "ProductName": "occaecat",
+		  "ProductName": "product 1",
 		  "Description": "Dolore sint culpa fugiat officia laborum. Reprehenderit tempor laboris minim aliquip cupidatat commodo sint nulla. Proident excepteur consectetur exercitation ullamco velit. Qui ut duis irure reprehenderit aliquip mollit fugiat laboris. Aliqua in id excepteur qui cillum sit deserunt ad officia cupidatat enim officia.\r\n",
 		  "productImg":"https://img.freepik.com/free-photo/computer-screen-on-a-white-background_1232-543.jpg?w=360"
 		},
@@ -22,71 +22,94 @@
 		  "ProductID": 2,
 		  "Price":12.3,
 		  "CurrencyCode":"EUR",
-		  "ProductName": "laborum",
+		  "ProductName": "product 2",
 		  "Description": "Dolore sint culpa fugiat officia laborum. Reprehenderit tempor laboris minim aliquip cupidatat commodo sint nulla. Proident excepteur consectetur exercitation ullamco velit. Qui ut duis irure reprehenderit aliquip mollit fugiat laboris. Aliqua in id excepteur qui cillum sit deserunt ad officia cupidatat enim officia.\r\n",
 		  "productImg":"https://img.freepik.com/free-photo/computer-screen-on-a-white-background_1232-543.jpg?w=360"
 		
 		},
 		{
-			"StoreID": 13,
+		  "StoreID": 13,
 		  "ProductID": 3,
 		  "Price":123,
 		  "CurrencyCode":"EUR",
-		  "ProductName": "ipsum0",
+		  "ProductName": "product 3",
 		  "Description": "Dolore sint culpa fugiat officia laborum. Reprehenderit tempor laboris minim aliquip cupidatat commodo sint nulla. Proident excepteur consectetur exercitation ullamco velit. Qui ut duis irure reprehenderit aliquip mollit fugiat laboris. Aliqua in id excepteur qui cillum sit deserunt ad officia cupidatat enim officia.\r\n",
 		  "productImg":"https://img.freepik.com/free-photo/computer-screen-on-a-white-background_1232-543.jpg?w=360"
 		
 		},
 		{
-			"StoreID": 13,
+		  "StoreID": 13,
 		  "ProductID": 4,
 		  "Price":123,
 		  "CurrencyCode":"EUR",
-		  "ProductName": "excepteur",
+		  "ProductName": "product 4",
 		  "Description": "Dolore sint culpa fugiat officia laborum. Reprehenderit tempor laboris minim aliquip cupidatat commodo sint nulla. Proident excepteur consectetur exercitation ullamco velit. Qui ut duis irure reprehenderit aliquip mollit fugiat laboris. Aliqua in id excepteur qui cillum sit deserunt ad officia cupidatat enim officia.\r\n",
 		  "productImg":"https://img.freepik.com/free-photo/computer-screen-on-a-white-background_1232-543.jpg?w=360"
 		
 		},
 		{
-			"StoreID": 1,
-		  "ProductID": 0,
+		  "StoreID": 1,
+		  "ProductID": 5,
 		  "Price":123,
-		  "ProductName": "ipsum1",
+		  "CurrencyCode":"EUR",
+		  "ProductName": "product 5",
 		  "Description": "Dolore sint culpa fugiat officia laborum. Reprehenderit tempor laboris minim aliquip cupidatat commodo sint nulla. Proident excepteur consectetur exercitation ullamco velit. Qui ut duis irure reprehenderit aliquip mollit fugiat laboris. Aliqua in id excepteur qui cillum sit deserunt ad officia cupidatat enim officia.\r\n",
 		  "productImg":"https://img.freepik.com/free-photo/computer-screen-on-a-white-background_1232-543.jpg?w=360"
 		
 		},
 		{
-			"StoreID": 1,
-		  "ProductID": 1,
-		  "ProductName": "excepteur",
+		  "StoreID": 1,
+		  "ProductID": 6,
+		  "Price":12.3,
+		  "CurrencyCode":"EUR",
+		  "ProductName": "product 6",
 		  "Description": "Dolore sint culpa fugiat officia laborum. Reprehenderit tempor laboris minim aliquip cupidatat commodo sint nulla. Proident excepteur consectetur exercitation ullamco velit. Qui ut duis irure reprehenderit aliquip mollit fugiat laboris. Aliqua in id excepteur qui cillum sit deserunt ad officia cupidatat enim officia.\r\n",
 		  "productImg":"https://img.freepik.com/free-photo/computer-screen-on-a-white-background_1232-543.jpg?w=360"
 		
 		},
 		{
-			"StoreID": 2,
-		  "ProductID": 0,
-		  "ProductName": "laborum"
+		  "StoreID": 2,
+		  "ProductID": 7,
+		  "Price":12.3,
+		  "CurrencyCode":"EUR",
+		  "ProductName": "product 7",
+		  "Description": "Dolore sint culpa fugiat officia laborum. Reprehenderit tempor laboris minim aliquip cupidatat commodo sint nulla. Proident excepteur consectetur exercitation ullamco velit. Qui ut duis irure reprehenderit aliquip mollit fugiat laboris. Aliqua in id excepteur qui cillum sit deserunt ad officia cupidatat enim officia.\r\n",
+		  "productImg":"https://img.freepik.com/free-photo/computer-screen-on-a-white-background_1232-543.jpg?w=360"
 		},
 		{
-			"StoreID": 2,
-		  "ProductID": 1,
-		  "ProductName": "occaecat"
+		  "StoreID": 2,
+		  "ProductID": 8,
+		  "Price":123,
+		  "CurrencyCode":"EUR",
+		  "ProductName": "product 8",
+		  "Description": "Dolore sint culpa fugiat officia laborum. Reprehenderit tempor laboris minim aliquip cupidatat commodo sint nulla. Proident excepteur consectetur exercitation ullamco velit. Qui ut duis irure reprehenderit aliquip mollit fugiat laboris. Aliqua in id excepteur qui cillum sit deserunt ad officia cupidatat enim officia.\r\n",
+		  "productImg":"https://img.freepik.com/free-photo/computer-screen-on-a-white-background_1232-543.jpg?w=360"
 		},
 		{
-			"StoreID": 3,
-		  "ProductID": 0,
-		  "ProductName": "laborum"
+		  "StoreID": 3,
+		  "ProductID": 9,
+		  "Price":123,
+		  "CurrencyCode":"EUR",
+		  "ProductName": "product 9",
+		  "Description": "Dolore sint culpa fugiat officia laborum. Reprehenderit tempor laboris minim aliquip cupidatat commodo sint nulla. Proident excepteur consectetur exercitation ullamco velit. Qui ut duis irure reprehenderit aliquip mollit fugiat laboris. Aliqua in id excepteur qui cillum sit deserunt ad officia cupidatat enim officia.\r\n",
+		  "productImg":"https://img.freepik.com/free-photo/computer-screen-on-a-white-background_1232-543.jpg?w=360"
 		},
 		{
-			"StoreID": 3,
-		  "ProductID": 1,
-		  "ProductName": "ipsum"
+		  "StoreID": 3,
+		  "ProductID": 10,
+		  "Price":123,
+		  "CurrencyCode":"EUR",
+		  "ProductName": "product 10",
+		  "Description": "Dolore sint culpa fugiat officia laborum. Reprehenderit tempor laboris minim aliquip cupidatat commodo sint nulla. Proident excepteur consectetur exercitation ullamco velit. Qui ut duis irure reprehenderit aliquip mollit fugiat laboris. Aliqua in id excepteur qui cillum sit deserunt ad officia cupidatat enim officia.\r\n",
+		  "productImg":"https://img.freepik.com/free-photo/computer-screen-on-a-white-background_1232-543.jpg?w=360"
 		},
 		{
-			"StoreID": 3,
-		  "ProductID": 2,
-		  "ProductName": "excepteur"
+		  "StoreID": 3,
+		  "ProductID": 11,
+		  "Price":123,
+		  "CurrencyCode":"EUR",
+		  "ProductName": "product 11",
+		  "Description": "Dolore sint culpa fugiat officia laborum. Reprehenderit tempor laboris minim aliquip cupidatat commodo sint nulla. Proident excepteur consectetur exercitation ullamco velit. Qui ut duis irure reprehenderit aliquip mollit fugiat laboris. Aliqua in id excepteur qui cillum sit deserunt ad officia cupidatat enim officia.\r\n",
+		  "productImg":"https://img.freepik.com/free-photo/computer-screen-on-a-white-background_1232-543.jpg?w=360"
 		}
   ]

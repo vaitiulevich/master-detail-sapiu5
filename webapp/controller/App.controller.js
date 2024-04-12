@@ -24,7 +24,7 @@ sap.ui.define(["sap/ui/core/mvc/Controller"], (Controller) => {
      */
     onBeforeRouteMatched(oEvent) {
       const oModel = this.getOwnerComponent().getModel("AppLayout");
-      const sLayout = oEvent.getParameters().arguments.layout;
+      let sLayout = oEvent.getParameters().arguments.layout;
 
       if (!sLayout) {
         const oCurrentUIState = this.getOwnerComponent()

@@ -180,39 +180,14 @@ sap.ui.define(
         });
       },
       /**
-       * Edit smart form.
+       * Function to activate input validation.
        *
-       * @private
+       * @param {sap.ui.base.Event} oEvent event object.
+       *
+       * @public
        *
        */
-      _onConnectEditSmartForm() {
-        const oMockServer = new MockServer({
-          rootUri: "smartform.SmartForm/",
-        });
-        const sMockdataUrl = sap.ui.require.toUrl("mockserver");
-        const sMetadataUrl = sMockdataUrl + "/metadata.xml";
-        oMockServer.simulate("../localService/metadata.xml", {
-          sMockdataBaseUrl: "../localService/mockdata",
-          aEntitySetsNames: ["Products"],
-        });
-        oMockServer.start();
-        const oModel = new ODataModel("smartform.SmartForm", true);
-        oModel.setDefaultBindingMode("TwoWay");
-
-        this.getView().setModel(oModel);
-
-        const that = this;
-        oModel
-          .getMetaModel()
-          .loaded()
-          .then(() => {
-            // that.getView().byId("smartFormColumn").bindElement("/Products(0)");
-            const sProductID = 0;
-            const sKey = "/Products(" + sProductID + ")";
-
-            that.getView().bindObject({ path: sKey });
-          });
-      },
+      handleEditToggled(oEvent) {},
     });
   }
 );
