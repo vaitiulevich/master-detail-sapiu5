@@ -33,7 +33,7 @@
                 <Property Name="Price" sap:updatable="true" sap:label="Price" Type="Edm.Number" Nullable="false" />
                 <Property Name="CurrencyCode" sap:updatable="false" sap:label="CurrencyCode" Type="Edm.Currency" Nullable="false" />
                 <Property Name="Description" sap:updatable="true" sap:label="Description" Type="Edm.String" Nullable="true" />
-                <Property Name="productImg" sap:updatable="true" sap:label="productImg" Type="Edm.String" Nullable="true" />
+                <Property Name="ProductImg" sap:updatable="true" sap:label="ProductImg" Type="Edm.String" Nullable="true" />
                 <NavigationProperty Name="Stores" Relationship="NerdStores.Models.Product_Store_Store_Products" FromRole="Product_Store" ToRole="Store_Product"/>
             </EntityType>
 

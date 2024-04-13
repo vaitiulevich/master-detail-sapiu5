@@ -34,7 +34,7 @@
 						<snappedHeading>
 							<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
 								<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
-									<f:Avatar src="{productImg}" displaySize="S" displayShape="Square"/>
+									<f:Avatar src="{ProductImg}" displaySize="S" displayShape="Square"/>
 									<m:Title text="{ProductName}" wrapping="true" class="sapUiTinyMarginEnd"/>
 								</m:FlexBox>
 							</m:FlexBox>
@@ -70,11 +70,11 @@
 
 				<headerContent>
 					<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Stretch">
-						<f:Avatar src="{productImg}"
+						<m:Avatar src="{ProductImg}"
 								  displaySize="XL"
 								  displayShape="Square"
 								  class="sapUiTinyMarginEnd">
-						</f:Avatar>
+						</m:Avatar>
 						<m:VBox justifyContent="Center" class="sapUiSmallMarginEnd">
 							<m:Label text="{i18n>HeaderTextPrice}"/>
 							<m:ObjectNumber
@@ -99,7 +99,7 @@
 									validationMode="Async"
 									editToggled="handleEditToggled">
 										<smartForm:layout>
-											<smartForm:ColumnLayout columnsM="1" columnsL="1" columnsXL="1"/>
+											<smartForm:ColumnLayout columnsM="1" columnsL="1" columnsXL="2"/>
 										</smartForm:layout>
 										<smartForm:Group>
 											<smartForm:GroupElement>
