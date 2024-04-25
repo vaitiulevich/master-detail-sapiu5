@@ -34,7 +34,7 @@
 						<snappedHeading>
 							<m:FlexBox wrap="Wrap" fitContainer="true" alignItems="Center">
 								<m:FlexBox wrap="NoWrap" fitContainer="true" alignItems="Center" class="sapUiTinyMarginEnd">
-									<f:Avatar src="{ProductImg}" displaySize="S" displayShape="Square"/>
+									<m:Avatar src="{ProductImg}" displaySize="S" displayShape="Square"/>
 									<m:Title text="{ProductName}" wrapping="true" class="sapUiTinyMarginEnd"/>
 								</m:FlexBox>
 							</m:FlexBox>

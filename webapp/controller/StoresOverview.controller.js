@@ -5,16 +5,8 @@ sap.ui.define(
     "sap/m/ObjectAttribute",
     "sap/ui/model/Filter",
     "sap/ui/model/FilterOperator",
-    "sap/f/library",
   ],
-  (
-    Controller,
-    ObjectListItem,
-    ObjectAttribute,
-    Filter,
-    FilterOperator,
-    fioriLibrary
-  ) => {
+  (Controller, ObjectListItem, ObjectAttribute, Filter, FilterOperator) => {
     "use strict";
 
     return Controller.extend("kate.vaitsiulevich.controller.StoresOverview", {

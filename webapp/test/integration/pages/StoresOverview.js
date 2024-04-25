@@ -3,18 +3,9 @@ sap.ui.define(
     "sap/ui/test/Opa5",
     "sap/ui/test/actions/Press",
     "sap/ui/test/actions/EnterText",
-    "sap/ui/test/matchers/Properties",
-    "sap/ui/test/matchers/AggregationLengthEquals",
     "sap/ui/test/matchers/Descendant",
   ],
-  function (
-    Opa5,
-    Press,
-    EnterText,
-    Properties,
-    AggregationLengthEquals,
-    Descendant
-  ) {
+  function (Opa5, Press, EnterText, Descendant) {
     "use strict";
 
     const sViewName = "StoresOverview",

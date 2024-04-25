@@ -6,11 +6,21 @@ sap.ui.define(
     "sap/ui/model/FilterOperator",
     "sap/m/MessageToast",
     "sap/m/MessageBox",
+    "../model/formatter",
   ],
-  (Controller, Sorter, Filter, FilterOperator, MessageToast, MessageBox) => {
+  (
+    Controller,
+    Sorter,
+    Filter,
+    FilterOperator,
+    MessageToast,
+    MessageBox,
+    formatter
+  ) => {
     "use strict";
 
     return Controller.extend("kate.vaitsiulevich.controller.StoreDetails", {
+      formatter: formatter,
       /**
        * Controller's "init" lifecycle method.
        *
@@ -48,8 +58,6 @@ sap.ui.define(
           "/actionButtonsInfo/midColumn/fullScreen"
         );
 
-        console.log(sNextLayout);
-
         oComponent.getRouter().navTo("StoreDetails", {
           layout: sNextLayout,
           StoreID: sStoreId,
@@ -73,7 +81,6 @@ sap.ui.define(
         const sNextLayout = oODataModel.getProperty(
           "/actionButtonsInfo/midColumn/exitFullScreen"
         );
-        console.log(sNextLayout);
 
         oComponent.getRouter().navTo("StoreDetails", {
           layout: sNextLayout,
@@ -148,22 +155,6 @@ sap.ui.define(
           oBinding = oTable.getBinding("items"),
           oSorter = new Sorter("Price", this._bDescendingSort);
         oBinding.sort(oSorter);
-      },
-      onPressOpenFullScreen(oEvent) {
-        const oODataModel = this.getView().getModel("AppLayout");
-        const oComponent = this.getOwnerComponent();
-        const oSource = oEvent.getSource();
-        const oCtx = oSource.getBindingContext();
-
-        const sStoreId = oCtx.getObject("StoreID");
-        const sNextLayout = oODataModel.getProperty(
-          "/actionButtonsInfo/midColumn/fullScreen"
-        );
-
-        oComponent.getRouter().navTo("StoreDetails", {
-          layout: sNextLayout,
-          StoreID: sStoreId,
-        });
       },
       /**
        * Searching product.

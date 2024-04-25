@@ -59,9 +59,6 @@
                     <End Role="Store_Product" EntitySet="Stores"/>
                 </AssociationSet>
 
-                <FunctionImport Name="GetStoresList" EntitySet="Stores" ReturnType="Collection(NerdStores.Models.Store)" m:HttpMethod="GET">
-                    <!-- <Parameter Name="rating" Type="Edm.Int32" Mode="In"/> -->
-                </FunctionImport>
             </EntityContainer>
             <Annotations xmlns="http://docs.oasis-open.org/odata/ns/edm"
                 Target="NerdStores.Models.Product">

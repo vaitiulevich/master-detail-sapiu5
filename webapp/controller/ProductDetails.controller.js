@@ -1,13 +1,6 @@
 sap.ui.define(
-  [
-    "sap/ui/core/mvc/Controller",
-    "sap/m/MessageToast",
-    "sap/m/MessageBox",
-    "sap/ui/core/util/MockServer",
-    "sap/ui/model/json/JSONModel",
-    "sap/ui/model/odata/v2/ODataModel",
-  ],
-  (Controller, MessageToast, MessageBox, MockServer, JSONModel, ODataModel) => {
+  ["sap/ui/core/mvc/Controller", "sap/m/MessageToast", "sap/m/MessageBox"],
+  (Controller, MessageToast, MessageBox) => {
     "use strict";
 
     return Controller.extend("kate.vaitsiulevich.controller.ProductDetails", {
@@ -28,8 +21,6 @@ sap.ui.define(
         oRouter
           .getRoute("ProductDetails")
           .attachPatternMatched(this.onPatternMatched, this);
-
-        // this._onConnectEditSmartForm()
       },
       /**
        * Set Full Screen Mode.
@@ -179,15 +170,6 @@ sap.ui.define(
           },
         });
       },
-      /**
-       * Function to activate input validation.
-       *
-       * @param {sap.ui.base.Event} oEvent event object.
-       *
-       * @public
-       *
-       */
-      handleEditToggled(oEvent) {},
     });
   }
 );

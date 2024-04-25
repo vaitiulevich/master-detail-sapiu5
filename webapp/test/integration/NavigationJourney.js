@@ -10,13 +10,10 @@ sap.ui.define(
     QUnit.module("Navigation");
 
     opaTest("Should see the StoresOverview view", function (Given, When, Then) {
-      // Arrangements
       Given.iStartMyApp();
 
-      // Assertion
       Then.onTheStoresOverviewPage.iShouldSeeTheStoresOverview();
 
-      // Cleanup
       Then.iTeardownMyApp();
     });
   }
